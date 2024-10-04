@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import { Signup } from "components";
-import Login from "./Login";
-import Logout from "./Logout";
+import { Signup, Login, Logout } from "components";
+// import Login from "./Login";
+// import Logout from "./Logout";
 
 import { UserType } from "./user.types";
 
@@ -12,8 +12,7 @@ const User = ({ currUser, setCurrUser }: UserType) => {
   if (currUser)
     return (
       <div>
-        Hello {currUser.email}
-        {/* <PrivateText currUser={currUser} /> */}
+        Olá {currUser.email}
         <Logout setCurrUser={setCurrUser} />
       </div>
     );
@@ -27,4 +26,5 @@ const User = ({ currUser, setCurrUser }: UserType) => {
     </div>
   );
 };
+
 export default User;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import "./App.css";
+import { User } from "components";
 
 const App = () => {
   const [currUser, setCurrUser] = useState(null);

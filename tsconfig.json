@@ -23,7 +23,8 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "useDefineForClassFields": true,
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "types": ["node"],
   },
   "include": [
     "src"

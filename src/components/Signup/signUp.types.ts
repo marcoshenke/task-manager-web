@@ -1,6 +1,8 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type SignUpType = {
-  setCurrUser: (dataUser: UserInfoType) => void;
-  setShow: (arg: boolean) => void;
+  setCurrUser: Dispatch<SetStateAction<null>>;
+  setShow: Dispatch<SetStateAction<boolean>>;
 };
 
 export type UserInfoType = {
