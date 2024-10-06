@@ -12,7 +12,7 @@ const User = ({ currUser, setCurrUser }: UserType) => {
   if (currUser)
     return (
       <div>
-        Olá {currUser.email}
+        Olá {currUser.user.email}
         <Logout setCurrUser={setCurrUser} />
       </div>
     );

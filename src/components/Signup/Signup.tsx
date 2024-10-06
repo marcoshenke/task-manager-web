@@ -7,7 +7,7 @@ import { SignUpSchemaType, signupSchema } from "./schema";
 
 const Signup = ({ setCurrUser, setShow }: SignUpType) => {
   const signup = async (userInfo: UserInfoType) => {
-    const url = "http://localhost:3000/signup";
+    const url = "http://localhost:3001/signup";
     try {
       const response = await fetch(url, {
         method: "post",
@@ -21,7 +21,9 @@ const Signup = ({ setCurrUser, setShow }: SignUpType) => {
       if (!response.ok) throw data.error;
       const token = response.headers.get("Authorization") || "";
       localStorage.setItem("token", token);
-      setCurrUser(data);
+      setCurrUser({
+        user: { email: data.email, password: data.password, name: data.name },
+      });
     } catch (error) {
       console.log("error", error);
     }
@@ -42,8 +44,11 @@ const Signup = ({ setCurrUser, setShow }: SignUpType) => {
     // const formData = new FormData(formRef.current);
     // const data = Object.fromEntries(formData);
     const userInfo = {
-      email: data.email,
-      password: data.password,
+      user: {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      },
     };
     signup(userInfo);
   };
@@ -55,10 +60,17 @@ const Signup = ({ setCurrUser, setShow }: SignUpType) => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
+        Nome completo:{" "}
+        <input type="name" placeholder="Nome completo" {...register("name")} />
+        <br />
         Email: <input type="email" placeholder="email" {...register("email")} />
         <br />
         Password:{" "}
-        <input type="password" placeholder="password" {...register("email")} />
+        <input
+          type="password"
+          placeholder="password"
+          {...register("password")}
+        />
         <br />
         <input type="submit" value="Submit" />
       </form>
