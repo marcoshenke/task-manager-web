@@ -3,5 +3,5 @@ import { UserInfoType } from "types/user.types";
 
 export type UserType = {
   currUser: UserInfoType | null;
-  setCurrUser: Dispatch<SetStateAction<null>>;
+  setCurrUser: Dispatch<SetStateAction< UserInfoType | null>>;
 };

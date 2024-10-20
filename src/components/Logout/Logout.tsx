@@ -1,8 +1,11 @@
 import { Dispatch, MouseEvent, SetStateAction } from "react";
 import { LogoutType } from "./logout.types";
+import { UserInfoType } from "types/user.types";
 
 const Logout = ({ setCurrUser }: LogoutType) => {
-  const logout = async (setCurrUser: Dispatch<SetStateAction<null>>) => {
+  const logout = async (
+    setCurrUser: Dispatch<SetStateAction<UserInfoType | null>>
+  ) => {
     try {
       const response = await fetch("http://localhost:3001/logout", {
         method: "delete",

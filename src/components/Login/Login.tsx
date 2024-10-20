@@ -8,23 +8,15 @@ import { LoginSchemaType, LoginSchema } from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const Login = ({ setCurrUser, setShow }: LoginType) => {
-  console.log(setCurrUser);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     resolver: yupResolver(LoginSchema),
   });
 
-  console.log(errors);
-
   const login = async (
     userInfo: UserInfoType,
-    setCurrUser: Dispatch<SetStateAction<null>>
+    setCurrUser: Dispatch<SetStateAction<UserInfoType | null>>
   ) => {
-    const url = "http://localhost:3000/login";
+    const url = "http://localhost:3001/login";
     try {
       const response = await fetch(url, {
         method: "post",
@@ -34,11 +26,13 @@ const Login = ({ setCurrUser, setShow }: LoginType) => {
         },
         body: JSON.stringify(userInfo),
       });
-      const data = await response.json();
-      if (!response.ok) throw data.error;
-      const token = response.headers.get("Authorization") || "";
+      const response_json = await response.json();
+      if (!response.ok) throw response_json.error;
+      const bearer_token = response.headers.get("Authorization") || "";
+      const token = bearer_token.split(" ")[1];
       localStorage.setItem("token", token);
-      setCurrUser(data);
+      console.log(response_json);
+      setCurrUser(response_json?.status?.data);
     } catch (error) {
       console.log("error", error);
     }

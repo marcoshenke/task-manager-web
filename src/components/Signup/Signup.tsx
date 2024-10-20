@@ -29,16 +29,9 @@ const Signup = ({ setCurrUser, setShow }: SignUpType) => {
     }
   };
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     resolver: yupResolver(signupSchema),
   });
-
-  console.log(errors, watch("email"), watch("password"));
 
   const onSubmit = (data: SignUpSchemaType) => {
     // const formData = new FormData(formRef.current);

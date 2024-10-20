@@ -9,16 +9,14 @@ import { UserType } from "./user.types";
 const User = ({ currUser, setCurrUser }: UserType) => {
   const [show, setShow] = useState(true);
 
-  if (currUser)
-    return (
-      <div>
-        Olá {currUser.user.email}
-        <Logout setCurrUser={setCurrUser} />
-      </div>
-    );
   return (
     <div>
-      {show ? (
+      {currUser ? (
+        <div>
+          Olá {currUser.user.email}
+          <Logout setCurrUser={setCurrUser} />
+        </div>
+      ) : show ? (
         <Login setCurrUser={setCurrUser} setShow={setShow} />
       ) : (
         <Signup setCurrUser={setCurrUser} setShow={setShow} />
